@@ -1,7 +1,7 @@
 +++
 title = 'How to create your own Blog using Hugo and Azure Static Web Site'
 date = 2024-05-27T16:35:32+02:00
-draft = true
+draft = false
 +++
 
 # Overview
