@@ -1,7 +1,7 @@
 baseURL = "https://blog.sinnathurai.ch/"
 languageCode = "de-ch"
 title = "Pratheep's Tech Blog"
-theme = "ananke"
+theme = "github-style"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 
