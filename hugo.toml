@@ -1,3 +1,22 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = "https://blog.sinnathurai.ch/"
+languageCode = "de-ch"
+title = "Pratheep's Tech Blog"
+theme = "github-style"
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+
+[params]
+  author = "Pratheep Sinnathurai"
+  description = "Sharing is Caring"
+  github = "psinnathurai"
+  twitter = "psinnathurai"
+  linkedin = "psinnathurai"
+  url = "https://medium.com/@psinnathurai"
+  keywords = "blog, google analytics"
+  rss = true
+  lastmod = true
+  userStatusEmoji = "😀"
+  favicon = "/images/github-mark.png"
+  avatar = "/images/me/pratheep.png"
+  headerIcon = "/images/github-mark.png"
+  location = "Switzerland"
