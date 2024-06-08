@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="de-ch">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='http://localhost:1313/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='http://localhost:1313/css/frameworks.min.css' />
+    <link rel="stylesheet" href='http://localhost:1313/css/github.min.css' />
+    <link rel="stylesheet" href='http://localhost:1313/css/github-style.css' />
+    <link rel="stylesheet" href='http://localhost:1313/css/light.css' />
+    <link rel="stylesheet" href='http://localhost:1313/css/dark.css' />
+    <link rel="stylesheet" href='http://localhost:1313/css/syntax.css' />
+    <title>Certificate-Based Onboarding for Azure Arc Servers - Pratheep&#39;s Tech Blog</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/github-mark.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <meta name="description"
+  content="Overview Azure Arc version 1.41 introduces certificate-based authentication for connecting and disconnecting servers, replacing the old method of using passwords. This new feature makes managing servers easier and more secure.
+In this article, I will explain how to set up and use certificates for Azure Arc-enabled servers. You will learn how to create a certificate using Active Directory Certificate Services, export the certificate, and use it for onboarding servers to Azure Arc." />
+<meta name="keywords"
+  content='blog, google analytics' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="http://localhost:1313/post/20240529_azurearconboarding/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Certificate-Based Onboarding for Azure Arc Servers - Pratheep&#39;s Tech Blog" />
+<meta name="twitter:description"
+  content="Overview Azure Arc version 1.41 introduces certificate-based authentication for connecting and disconnecting servers, replacing the old method of using passwords. This new feature makes managing servers easier and more secure.
+In this article, I will explain how to set up and use certificates for Azure Arc-enabled servers. You will learn how to create a certificate using Active Directory Certificate Services, export the certificate, and use it for onboarding servers to Azure Arc." />
+<meta name="twitter:site" content="http://localhost:1313/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="http://localhost:1313/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Certificate-Based Onboarding for Azure Arc Servers - Pratheep&#39;s Tech Blog">
+<meta property="og:description"
+  content="Overview Azure Arc version 1.41 introduces certificate-based authentication for connecting and disconnecting servers, replacing the old method of using passwords. This new feature makes managing servers easier and more secure.
+In this article, I will explain how to set up and use certificates for Azure Arc-enabled servers. You will learn how to create a certificate using Active Directory Certificate Services, export the certificate, and use it for onboarding servers to Azure Arc." />
+<meta property="og:url" content="http://localhost:1313/post/20240529_azurearconboarding/" />
+<meta property="og:site_name" content="Certificate-Based Onboarding for Azure Arc Servers" />
+<meta property="og:image"
+  content="http://localhost:1313/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2024-06-06 16:14:21 &#43;0200 CEST" />
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="http://localhost:1313/">
+        <img class="octicon" height="32" width="32" src="/images/github-mark.png">
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <img height="24" class="octicon octicon-three-bars" width="24" src="/images/github-mark.png">
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+              <input type="hidden" name="q" value="site:http://localhost:1313/">
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="http://localhost:1313/">
+        <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark.png">
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+
+  
+<div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="http://localhost:1313/">
+                  <img class=" avatar-user"
+                    src="/images/blog/me.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="http://localhost:1313/">Pratheep Sinnathurai</a>
+                  </span>
+                  <span class="path-divider">/</span>
+                  <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
+                    <a href="http://localhost:1313/post/20240529_azurearconboarding/">Certificate-Based Onboarding for Azure Arc Servers</a>
+                  </strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Thu, 06 Jun 2024 16:14:21 &#43;0200"
+                    class="no-wrap">
+                    Thu, 06 Jun 2024 16:14:21 &#43;0200</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Thu, 06 Jun 2024 16:14:21 &#43;0200"
+                    class="no-wrap">
+                    Thu, 06 Jun 2024 16:14:21 &#43;0200</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      1288 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><h1 id="overview">Overview</h1>
+<p>Azure Arc version 1.41 introduces certificate-based authentication for connecting and disconnecting servers, replacing the old method of using passwords. This new feature makes managing servers easier and more secure.</p>
+<p>In this article, I will explain how to set up and use certificates for Azure Arc-enabled servers. You will learn how to create a certificate using Active Directory Certificate Services, export the certificate, and use it for onboarding servers to Azure Arc. Additionally, I will cover common issues you might face and suggest ways to improve the process.</p>
+<p>By the end of this guide, you will be able to use certificates to securely manage and onboard your servers to Azure Arc.</p>
+<p><img src="/images/blog/20240606/meme.jpg#center" alt="Meme"></p>
+<h1 id="why-use-certificates-instead-of-secrets">Why Use Certificates Instead of Secrets?</h1>
+<p>Previously, secrets were used for onboarding Azure Arc-enabled servers. However, certificates offer several advantages:</p>
+<ul>
+<li><strong>Simplified Management:</strong> No need to remember or manage complex passwords.</li>
+<li><strong>Centralized Control:</strong> Certificates can be centrally managed, and revocation can be used to disable them.</li>
+<li><strong>Enhanced Security:</strong> Certificates support a zero-trust architecture by requiring verification at each step.</li>
+</ul>
+<h1 id="create-a-certificate">Create a Certificate</h1>
+<h2 id="active-directory-certificate-services">Active Directory Certificate Services</h2>
+<p>To create a certificate for onboarding, we will use an internal Active Directory Certificate Services (AD CS) infrastructure. AD CS is a Windows Server role for issuing and managing a public key infrastructure (PKI), which creates, manages, distributes, stores, and revokes digital certificates.</p>
+<p>For more information, visit: <a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/active-directory-certificate-services-overview">Active Directory Certificate Services Overview</a></p>
+<h2 id="create-a-certificate-template">Create a Certificate Template</h2>
+<p>With your Certificate Authority ready, open the Certification Authority Console.</p>
+<ol>
+<li>
+<p><strong>Manage Certificate Templates:</strong></p>
+<ul>
+<li>Open up the Certificate Authority Management Console.</li>
+<li>Click on &ldquo;Certificates Templates&rdquo; and then &ldquo;Manage&rdquo;.</li>
+</ul>
+<p><img src="/images/blog/20240606/000004.jpg#center" alt=""></p>
+<p><img src="/images/blog/20240606/000005.jpg#center" alt=""></p>
+</li>
+<li>
+<p><strong>Duplicate the Computer Template:</strong></p>
+<ul>
+<li>Find the existing Computer Template, right-click on it, and select &ldquo;Duplicate Template&rdquo;.</li>
+</ul>
+<p><img src="/images/blog/20240606/000006.jpg#center" alt=""></p>
+</li>
+<li>
+<p><strong>Configure the New Template:</strong></p>
+<ul>
+<li>Choose the highest available Certificate Authority.</li>
+<li>Under Certificate Recipient, ensure it is set for the lowest Member of your Domain. If you still have Windows Server 2012 R2 in your Environment you need to choose Windows Server 2012 R2 and shame on you!</li>
+</ul>
+<p><img src="/images/blog/20240606/000007.jpg#center" alt=""></p>
+</li>
+<li>
+<p><strong>Set General Properties:</strong></p>
+<ul>
+<li>Name your template and publish the certificate in Active Directory.</li>
+</ul>
+<p><img src="/images/blog/20240606/000008.jpg#center" alt=""></p>
+</li>
+<li>
+<p><strong>Request Handling:</strong></p>
+<ul>
+<li>Select &ldquo;Allow private key to be exported&rdquo;.</li>
+</ul>
+<p><img src="/images/blog/20240606/000009.jpg#center" alt=""></p>
+</li>
+<li>
+<p><strong>Cryptography Settings:</strong></p>
+<ul>
+<li>Choose Key Storage Provider as the Provider Category.</li>
+<li>Set the Request Hash to SHA512.</li>
+<li>Click &ldquo;Apply&rdquo;.</li>
+</ul>
+<p><img src="/images/blog/20240606/000010.jpg#center" alt=""></p>
+</li>
+<li>
+<p><strong>Issue the Certificate Template:</strong></p>
+<ul>
+<li>In the Certificate Authority MMC, right-click on Certificate Template, select &ldquo;New&rdquo;, then &ldquo;Certificate Template to Issue&rdquo;.</li>
+</ul>
+<p><img src="/images/blog/20240606/000011.jpg#center" alt=""></p>
+<ul>
+<li>Select your newly created Certificate Template and click &ldquo;OK&rdquo;.</li>
+</ul>
+<p><img src="/images/blog/20240606/000013.jpg#center" alt=""></p>
+</li>
+</ol>
+<p>Now we have created a Certificate Template in our Active Directory Certificate Authority which we can use for creating a Certificate.</p>
+<h2 id="create-a-certificate-using-the-template">Create a Certificate Using the Template</h2>
+<p>Use a server or client that is a member of your Active Directory domain.</p>
+<ol>
+<li>
+<p><strong>Open Certificate Console:</strong></p>
+<ul>
+<li>Run <code>certlm.msc</code> to open the Certificate Console in Computer Context.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">certlm.msc
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Request a New Certificate:</strong></p>
+<ul>
+<li>Navigate to Personal &gt; Certificates &gt; All Tasks &gt; Request New Certificate.</li>
+</ul>
+<p><img src="/images/blog/20240606/000012.jpg#center" alt=""></p>
+</li>
+<li>
+<p><strong>Certificate Enrollment:</strong></p>
+<ul>
+<li>Click &ldquo;Next&rdquo;.</li>
+<li>Select &ldquo;Active Directory Enrollment Policy&rdquo; and click &ldquo;Next&rdquo;.</li>
+<li>Choose the template you created and click &ldquo;Enroll&rdquo;.</li>
+</ul>
+<p><img src="/images/blog/20240606/000014.jpg#center" alt=""></p>
+<p><img src="/images/blog/20240606/000015.jpg#center" alt=""></p>
+<p><img src="/images/blog/20240606/000016.jpg#center" alt=""></p>
+</li>
+</ol>
+<h2 id="exporting-the-certificate">Exporting the Certificate</h2>
+<p>Return to the Personal Certificate Store of your computer.</p>
+<ol>
+<li>
+<p><strong>Identify and Export the Certificate:</strong></p>
+<ul>
+<li>Right-click on the certificate, select &ldquo;All Tasks&rdquo;, then &ldquo;Export&rdquo;.</li>
+</ul>
+<p><img src="/images/blog/20240606/000017.jpg#center" alt=""></p>
+<p><img src="/images/blog/20240606/000018.jpg#center" alt=""></p>
+</li>
+<li>
+<p><strong>Export Options:</strong></p>
+<ul>
+<li>Click &ldquo;Next&rdquo;.</li>
+<li>Select &ldquo;Yes, export the private key&rdquo; and click &ldquo;Next&rdquo;.</li>
+<li>Choose &ldquo;Personal Information Exchange - PKCS #12 (.PFX)&rdquo; and click &ldquo;Next&rdquo;.</li>
+</ul>
+<p><img src="/images/blog/20240606/000019.jpg#center" alt=""></p>
+<p><img src="/images/blog/20240606/000020.jpg#center" alt=""></p>
+<p><img src="/images/blog/20240606/000021.jpg#center" alt=""></p>
+</li>
+<li>
+<p><strong>User Selection:</strong></p>
+<ul>
+<li>Enter a Password of your Choice and select AES256-SHA256 as your Encryption and click &ldquo;Next&rdquo;.</li>
+</ul>
+<p><img src="/images/blog/20240606/000022_a.jpg#center" alt=""></p>
+</li>
+<li>
+<p><strong>Complete the Export:</strong></p>
+<ul>
+<li>Choose a file name and click &ldquo;Next&rdquo;.</li>
+<li>Click &ldquo;Finish&rdquo;.</li>
+</ul>
+<p><img src="/images/blog/20240606/000023.jpg#center" alt=""></p>
+<p><img src="/images/blog/20240606/000024.jpg#center" alt=""></p>
+</li>
+<li>
+<p><strong>Repeat Without Exporting the Private Key:</strong></p>
+<ul>
+<li>
+<p>Perform the export again, but select &ldquo;No, do not export the private key&rdquo;.</p>
+<p><img src="/images/blog/20240606/000025.jpg#center" alt=""></p>
+</li>
+</ul>
+</li>
+</ol>
+<p>Now you should have both a .CER and a .PFX file.</p>
+<p><img src="/images/blog/20240606/000026.jpg#center" alt=""></p>
+<h2 id="service-principal-for-onboarding">Service Principal for Onboarding</h2>
+<p>In this step, we will create a Service Principal for onboarding Azure Arc-enabled servers. A Service Principal is used for authentication during this process.</p>
+<ol>
+<li>
+<p><strong>Switch to the Azure Portal.</strong></p>
+</li>
+<li>
+<p><strong>Navigate to Azure Arc:</strong></p>
+<ul>
+<li>Click on &ldquo;Service Principals&rdquo; and then click &ldquo;Add&rdquo;.</li>
+</ul>
+<p><img src="/images/blog/20240606/000027.jpg#center" alt=""></p>
+</li>
+<li>
+<p><strong>Define the Service Principal:</strong></p>
+<ul>
+<li>Enter a name for your Azure Arc Service Principal.</li>
+<li>Select the scope for the Service Principal.</li>
+</ul>
+<p><img src="/images/blog/20240606/000028.jpg#center" alt=""></p>
+</li>
+<li>
+<p><strong>Set Client Secret Details:</strong></p>
+<ul>
+<li>Choose a description and an expiration date for the client secret (note: we will delete this later).</li>
+<li>Select the role &ldquo;Azure Connected Machine Onboarding&rdquo;.</li>
+<li>Click &ldquo;Create&rdquo;.</li>
+</ul>
+<p><img src="/images/blog/20240606/000029.jpg#center" alt=""></p>
+</li>
+<li>
+<p><strong>Manage the Service Principal:</strong></p>
+<ul>
+<li>Go to the created Service Principal, click on &ldquo;Certificates &amp; secrets,&rdquo; then click on &ldquo;Client secrets.&rdquo;</li>
+</ul>
+<p><img src="/images/blog/20240606/000030.jpg#center" alt=""></p>
+<ul>
+<li>Click on the trash icon to delete the client secret.</li>
+</ul>
+<p><img src="/images/blog/20240606/000031.jpg#center" alt=""></p>
+</li>
+<li>
+<p><strong>Upload Certificate:</strong></p>
+<ul>
+<li>Click on &ldquo;Certificates&rdquo; and then click &ldquo;Upload Certificate.&rdquo;</li>
+<li>Upload the certificate and click &ldquo;Add.&rdquo;</li>
+</ul>
+<p><img src="/images/blog/20240606/000032.jpg#center" alt=""></p>
+<p><img src="/images/blog/20240606/000033.jpg#center" alt=""></p>
+</li>
+</ol>
+<h2 id="onboarding-the-server">Onboarding the Server</h2>
+<p>Finally, we proceed to onboard the server But I failed</p>
+<ol>
+<li><strong>Convert the Certificate from .PFX to .PEM:</strong>
+<ul>
+<li>Convert the .PFX File to a .PEM File. You can use openSSL for the conversion.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong><em>INFO:</em></strong>  On a Windows Client you can use openSSL if you have Git installed on your Client.</p>
+</blockquote>
+<ol start="2">
+<li>
+<p><strong>Copy the Certificate:</strong></p>
+<ul>
+<li>Transfer the .PEM file to the Windows server you wish to onboard to Azure Arc.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash"><span class="line"><span class="cl"><span class="nb">cd</span> <span class="s1">&#39;C:\Program Files\Git\usr\bin\&#39;</span>
+</span></span><span class="line"><span class="cl">.<span class="se">\o</span>penssl.exe pkcs12 -in <span class="s2">&#34;C:\Users\PratheepSinnathurai\Downloads\test.pfx&#34;</span> -out <span class="s2">&#34;C:\Users\PratheepSinnathurai\Downloads\test.pem&#34;</span> -nodes
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Install the Azure Arc Agent:</strong></p>
+<ul>
+<li>Run the following PowerShell command to install the Azure Arc Agent on the Windows server:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"> <span class="c"># Download the installation package</span>
+</span></span><span class="line"><span class="cl"> <span class="nb">Invoke-WebRequest</span> <span class="n">-UseBasicParsing</span> <span class="n">-Uri</span> <span class="s2">&#34;https://aka.ms/azcmagent-windows&#34;</span> <span class="n">-TimeoutSec</span> <span class="mf">30</span> <span class="n">-OutFile</span> <span class="s2">&#34;</span><span class="nv">$env:TEMP</span><span class="s2">\install_windows_azcmagent.ps1&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="c"># Install the hybrid agent</span>
+</span></span><span class="line"><span class="cl"> <span class="p">&amp;</span> <span class="s2">&#34;</span><span class="nv">$env:TEMP</span><span class="s2">\install_windows_azcmagent.ps1&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="p">(</span><span class="nv">$LASTEXITCODE</span> <span class="o">-ne</span> <span class="mf">0</span><span class="p">)</span> <span class="p">{</span> <span class="n">exit</span> <span class="mf">1</span><span class="p">;</span> <span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="c"># Define parameters</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$servicePrincipalCertPath</span> <span class="p">=</span> <span class="s2">&#34;C:\temp\test.pfx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$servicePrincipalId</span> <span class="p">=</span> <span class="s2">&#34;befa049d-f87d-4362-95d2-a03728c80959&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$tenantId</span> <span class="p">=</span> <span class="s2">&#34;5e6d7959-d83c-418e-bc9a-c1766178f93d&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$location</span> <span class="p">=</span> <span class="s2">&#34;switzerlandnorth&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$resourceGroup</span> <span class="p">=</span> <span class="s2">&#34;rg-azurearc-arclz-prd-szn-01&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$subscriptionId</span> <span class="p">=</span> <span class="s2">&#34;58383638-826b-42fb-bc5b-e07f4ef489e5&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$tags</span> <span class="p">=</span> <span class="s2">&#34;UpdateGroup=A1&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Construct the command</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$azcmagentConnectCmd</span> <span class="p">=</span> <span class="s2">&#34;azcmagent connect --service-principal-cert </span><span class="se">`&#34;</span><span class="nv">$servicePrincipalCertPath</span><span class="se">`&#34;</span><span class="s2"> --service-principal-id </span><span class="nv">$servicePrincipalId</span><span class="s2"> --tenant-id </span><span class="nv">$tenantId</span><span class="s2"> --location </span><span class="nv">$location</span><span class="s2"> --resource-group </span><span class="nv">$resourceGroup</span><span class="s2"> --subscription-id </span><span class="nv">$subscriptionId</span><span class="s2"> --tags </span><span class="nv">$tags</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Execute the command</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Invoke-Expression</span> <span class="nv">$azcmagentConnectCmd</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Confirming</strong></p>
+</li>
+</ol>
+<p>At the end we see that the server was successfully onboarded.</p>
+<p><img src="/images/blog/20240606/000040.jpg#center" alt=""></p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>When I was testing this feature, I encountered some failures that I&rsquo;d like to show you.</p>
+<h3 id="pfx-file">.PFX File</h3>
+<p>In my first test I used the .PFX File instead of the .PEM File.</p>
+<p>In the documentation, it is mentioned that password-protected .PFX files were not working.</p>
+<p><img src="/images/blog/20240606/000035.jpg#center" alt="Image 1"></p>
+<p>Therefore, I tested out the .PFX file with the permission &ldquo;Everyone&rdquo; (don&rsquo;t do that in production).</p>
+<p><img src="/images/blog/20240606/000037.jpg#center" alt="Image 2"></p>
+<p>I received the following error message:</p>
+<p><img src="/images/blog/20240606/000036.jpg#center" alt="Error Message"></p>
+<h2 id="path-to-the-pfx-file">Path to the .PFX File</h2>
+<p>Let&rsquo;s say we have our Certificate ready and I like to deploy that Certificate to multiple Servers.
+I would use a Group Policy to deploy my Certificate into the Personal Certificate Store and would run the azcmagent connect Command refering to my Personal Certificate Store.</p>
+<p>In my opininon we should be able to reference to the Certificates which are in the Certiciate Personal Store.</p>
+<p><img src="/images/blog/20240606/000041.jpg#center" alt="Error Message"></p>
+<h1 id="improvements">Improvements</h1>
+<p>After testing certificate-based authentication for Azure Arc-enabled server onboarding, I recommend the following improvements for Microsoft:</p>
+<ol>
+<li>It would be great if we could have more insights on how to create and manage the Certificate for Onboarding.</li>
+<li>Enable linking certificates from the Certificate Store rather than relying on file storage. This would make the deployment of certificates across all Windows Servers for Azure Arc onboarding easier.</li>
+<li>Simplify the creation of Azure Arc Service Principals in the Azure Portal by enabling direct use of a certificate, eliminating the current requirement to provide a client secret.</li>
+</ol>
+<h1 id="conclusion">Conclusion</h1>
+<p>In conclusion, Azure Arc version 1.41 brings a valuable new feature: certificate-based authentication for onboarding servers. This change makes the process more secure by using certificates instead of passwords, making it easier to manage and control access centrally.</p>
+<p>This article provided a step-by-step guide on how to create and use certificates for Azure Arc. We covered setting up Active Directory Certificate Services, creating a certificate template, exporting the certificates, and creating a service principal for Azure Arc. We also discussed common problems and improvements needed to make the process smoother.</p>
+<p>Overall, using certificates instead of passwords for Azure Arc onboarding is a big improvement. It simplifies the process and enhances security. With continued updates and user feedback, Microsoft can make Azure Arc even easier and more secure to use for managing servers.</p>
+</article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='http://localhost:1313/js/toc.js'></script>
+<link rel="stylesheet" href='http://localhost:1313/css/toc.css' />
+
+
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="http://localhost:1313/">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+</body>
+
+<script type="application/javascript" src="http://localhost:1313/js/github-style.js"></script>
+
+
+
+
+</html>

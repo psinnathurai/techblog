@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="de-ch">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='http://localhost:1313/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='http://localhost:1313/css/frameworks.min.css' />
+    <link rel="stylesheet" href='http://localhost:1313/css/github.min.css' />
+    <link rel="stylesheet" href='http://localhost:1313/css/github-style.css' />
+    <link rel="stylesheet" href='http://localhost:1313/css/light.css' />
+    <link rel="stylesheet" href='http://localhost:1313/css/dark.css' />
+    <link rel="stylesheet" href='http://localhost:1313/css/syntax.css' />
+    <title>How to Create Your Own Blog Using Hugo and Azure Static Web Apps - Pratheep&#39;s Tech Blog</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/github-mark.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <meta name="description"
+  content="Overview Since May 2024, I have been a Microsoft MVP in Azure Hybrid and Migration. Many people have asked me, &amp;ldquo;Hey Pratheep, how did you start your blog?&amp;rdquo; To avoid spending too much time on questions like &amp;ldquo;How should my page look?&amp;rdquo; and &amp;ldquo;Which font should I use?&amp;rdquo; I initially published my first blogs on Medium.com. However, I always wanted to create my own blog site.
+Recently, I noticed that some Microsoft-provided websites were using Hugo, a tool I hadn&amp;rsquo;t heard of before." />
+<meta name="keywords"
+  content='blog, google analytics' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="http://localhost:1313/post/20240529_createblog/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="How to Create Your Own Blog Using Hugo and Azure Static Web Apps - Pratheep&#39;s Tech Blog" />
+<meta name="twitter:description"
+  content="Overview Since May 2024, I have been a Microsoft MVP in Azure Hybrid and Migration. Many people have asked me, &amp;ldquo;Hey Pratheep, how did you start your blog?&amp;rdquo; To avoid spending too much time on questions like &amp;ldquo;How should my page look?&amp;rdquo; and &amp;ldquo;Which font should I use?&amp;rdquo; I initially published my first blogs on Medium.com. However, I always wanted to create my own blog site.
+Recently, I noticed that some Microsoft-provided websites were using Hugo, a tool I hadn&amp;rsquo;t heard of before." />
+<meta name="twitter:site" content="http://localhost:1313/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="http://localhost:1313/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="How to Create Your Own Blog Using Hugo and Azure Static Web Apps - Pratheep&#39;s Tech Blog">
+<meta property="og:description"
+  content="Overview Since May 2024, I have been a Microsoft MVP in Azure Hybrid and Migration. Many people have asked me, &amp;ldquo;Hey Pratheep, how did you start your blog?&amp;rdquo; To avoid spending too much time on questions like &amp;ldquo;How should my page look?&amp;rdquo; and &amp;ldquo;Which font should I use?&amp;rdquo; I initially published my first blogs on Medium.com. However, I always wanted to create my own blog site.
+Recently, I noticed that some Microsoft-provided websites were using Hugo, a tool I hadn&amp;rsquo;t heard of before." />
+<meta property="og:url" content="http://localhost:1313/post/20240529_createblog/" />
+<meta property="og:site_name" content="How to Create Your Own Blog Using Hugo and Azure Static Web Apps" />
+<meta property="og:image"
+  content="http://localhost:1313/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2024-05-30 01:50:32 &#43;0200 CEST" />
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="http://localhost:1313/">
+        <img class="octicon" height="32" width="32" src="/images/github-mark.png">
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <img height="24" class="octicon octicon-three-bars" width="24" src="/images/github-mark.png">
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+              <input type="hidden" name="q" value="site:http://localhost:1313/">
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="http://localhost:1313/">
+        <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark.png">
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+
+  
+<div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="http://localhost:1313/">
+                  <img class=" avatar-user"
+                    src="/images/blog/me.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="http://localhost:1313/">Pratheep Sinnathurai</a>
+                  </span>
+                  <span class="path-divider">/</span>
+                  <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
+                    <a href="http://localhost:1313/post/20240529_createblog/">How to Create Your Own Blog Using Hugo and Azure Static Web Apps</a>
+                  </strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Thu, 30 May 2024 01:50:32 &#43;0200"
+                    class="no-wrap">
+                    Thu, 30 May 2024 01:50:32 &#43;0200</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Thu, 30 May 2024 01:50:32 &#43;0200"
+                    class="no-wrap">
+                    Thu, 30 May 2024 01:50:32 &#43;0200</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      1381 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><h1 id="overview">Overview</h1>
+<p>Since May 2024, I have been a Microsoft MVP in Azure Hybrid and Migration. Many people have asked me, &ldquo;Hey Pratheep, how did you start your blog?&rdquo; To avoid spending too much time on questions like &ldquo;How should my page look?&rdquo; and &ldquo;Which font should I use?&rdquo; I initially published my first blogs on Medium.com. However, I always wanted to create my own blog site.</p>
+<p>Recently, I noticed that some Microsoft-provided websites were using Hugo, a tool I hadn&rsquo;t heard of before. Intrigued, I decided to invest some time in learning and experimenting with Hugo. In this blog post, I will show you how to create your own blog using Hugo and Azure Static Web Apps. The best part? It&rsquo;s all free.</p>
+<p><img src="/images/blog/20240529/meme.jpg#center" alt="Meme"></p>
+<h1 id="what-is-hugo">What is Hugo</h1>
+<p>Hugo is a popular open-source static site generator written in Go. It allows you to create fast and flexible websites effortlessly. With Hugo, you can author content in Markdown or HTML and generate a static website that can be hosted on any web server.</p>
+<p>One issue that bothered me on Medium.com was the incorrect formatting of PowerShell command syntax. With Hugo, I can use Markdown, which provides better support for coding syntax.</p>
+<p>I discovered Hugo when I learned that Microsoft&rsquo;s <a href="https://azure.github.io/Azure-Verified-Modules/">Azure Verified Module Website</a> was built using it. Intrigued by its capabilities, I decided to give Hugo a try myself.</p>
+<h1 id="installation">Installation</h1>
+<h2 id="hugo">Hugo</h2>
+<p>To get started with Hugo, you&rsquo;ll need to install it on your machine. I used a Windows 11 device. On Windows 11, you can use WinGet to install Hugo:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">winget install -e --id Hugo.Hugo.Extended
+</span></span></code></pre></div><h2 id="create-a-hugo-app">Create a Hugo App</h2>
+<p>Now that we have Hugo installed, we can use the Hugo CLI to create a new app:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo new site techblog
+</span></span></code></pre></div><p>Navigate to the newly created Hugo app directory:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> .<span class="se">\t</span>echblog<span class="se">\
+</span></span></span></code></pre></div><p>Initialize a new local Git repository:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git init
+</span></span></code></pre></div><p>Rename the current branch to &ldquo;main&rdquo;:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git branch -M main
+</span></span></code></pre></div><p>Now, let&rsquo;s select a theme for your new website. You can browse a complete list of available themes here: <a href="https://themes.gohugo.io/">Hugo Themes</a>.</p>
+<p>If you want to customize a theme, you can fork it and make your modifications. Alternatively, you can update the theme whenever the repository is updated.</p>
+<p>Personally, I prefer the GitHub Style theme, so I chose that one. To add the GitHub Style theme as a submodule to your current Git repository and place it in the <code>themes/github-style</code> directory, use the following command:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git submodule add https://github.com/MeiK2333/github-style themes/github-style
+</span></span></code></pre></div><p>In the <code>hugo.toml</code> file, change the theme to the new theme:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;github-style&#34;</span>
+</span></span></code></pre></div><p>Commit the changes:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add -A
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;first commit&#34;</span>
+</span></span></code></pre></div><h2 id="deploy-your-hugo-app-to-github">Deploy Your Hugo App to GitHub</h2>
+<p>To save and later deploy our Hugo app, we&rsquo;ll create a GitHub repository. If you don&rsquo;t have a GitHub account yet, you can create one <a href="https://github.com/signup">here</a>.</p>
+<p>Create a new repository using this <a href="https://github.com/new">link</a>. You can choose to make it public or private.</p>
+<p>Add your GitHub repository as a remote to your local repository. Replace the URL with your GitHub repository&rsquo;s URL:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git remote add origin https://github.com/psinnathurai/techblog
+</span></span></code></pre></div><p>Push your local repository to your remote repository:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git push --set-upstream origin main
+</span></span></code></pre></div><h2 id="deploy-a-new-static-web-app">Deploy a New Static Web App</h2>
+<h3 id="troubleshooting">Troubleshooting</h3>
+<p>We could easily create a Static Web App in Azure using the portal, but I prefer to use Bicep to deploy our Azure resources. After some testing, I was <strong>NOT</strong> able to create the Static Web App using Bicep, but I will show you where I encountered issues.</p>
+<p><strong>Please do not follow the next steps until I mention it&rsquo;s safe again.</strong></p>
+<p>First, use the following Bicep file and parameter file to create a Web App:</p>
+<p><code>main.bicep</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bicep" data-lang="bicep"><span class="line"><span class="cl"><span class="kd">param</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="nv">string</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">location</span><span class="w"> </span><span class="nv">string</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">sku</span><span class="w"> </span><span class="nv">string</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">repositoryUrl</span><span class="w"> </span><span class="nv">string</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">branch</span><span class="w"> </span><span class="nv">string</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">appLocation</span><span class="w"> </span><span class="nv">string</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">apiLocation</span><span class="w"> </span><span class="nv">string</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">appArtifactLocation</span><span class="w"> </span><span class="nv">string</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">areStaticSitesDistributedBackendsEnabled</span><span class="w"> </span><span class="nv">bool</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">module</span><span class="w"> </span><span class="nv">staticSite</span><span class="w"> </span><span class="s">&#39;br/public:avm/res/web/static-site:0.3.0&#39;</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="nv">name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nv">params</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="nv">name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nv">location</span><span class="p">:</span><span class="w"> </span><span class="nv">location</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nv">sku</span><span class="p">:</span><span class="w"> </span><span class="nv">sku</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nv">repositoryUrl</span><span class="p">:</span><span class="w"> </span><span class="nv">repositoryUrl</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nv">branch</span><span class="p">:</span><span class="w"> </span><span class="nv">branch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nv">appSettings</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nv">APP_LOCATION</span><span class="p">:</span><span class="w"> </span><span class="nv">appLocation</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nv">API_LOCATION</span><span class="p">:</span><span class="w"> </span><span class="nv">apiLocation</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nv">APP_ARTIFACT_LOCATION</span><span class="p">:</span><span class="w"> </span><span class="nv">appArtifactLocation</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nv">ARE_STATIC_SITES_DISTRIBUTED_BACKENDS_ENABLED</span><span class="p">:</span><span class="w"> </span><span class="nv">areStaticSitesDistributedBackendsEnabled</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p><code>params.bicep</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bicep" data-lang="bicep"><span class="line"><span class="cl"><span class="kd">using</span><span class="w"> </span><span class="s">&#39;./main.bicep&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">@</span><span class="nf">description</span><span class="p">(</span><span class="s">&#39;The name of the static site&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">name</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;sinnathuraitechblog&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">@</span><span class="nf">description</span><span class="p">(</span><span class="s">&#39;The location of the static site&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">location</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;westeurope&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">@</span><span class="nf">description</span><span class="p">(</span><span class="s">&#39;The SKU of the static site&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">sku</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;Free&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">@</span><span class="nf">description</span><span class="p">(</span><span class="s">&#39;The repository URL of the static site&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">repositoryUrl</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;https://github.com/psinnathurai/techblog&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">@</span><span class="nf">description</span><span class="p">(</span><span class="s">&#39;The branch of the repository for the static site&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">branch</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;main&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">@</span><span class="nf">description</span><span class="p">(</span><span class="s">&#39;The app location for the static site&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">appLocation</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;/&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">@</span><span class="nf">description</span><span class="p">(</span><span class="s">&#39;The API location for the static site&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">apiLocation</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">@</span><span class="nf">description</span><span class="p">(</span><span class="s">&#39;The app artifact location for the static site&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">appArtifactLocation</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;public&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">@</span><span class="nf">description</span><span class="p">(</span><span class="s">&#39;Whether distributed backends are enabled for the static site&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">param</span><span class="w"> </span><span class="nv">areStaticSitesDistributedBackendsEnabled</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span></code></pre></div><p>Once our Static Web App in the Azure portal is ready, we need to copy the deployment token for authentication in GitHub.</p>
+<p>Copy the deployment token:</p>
+<p><img src="/images/blog/20240529/01.png#center" alt="First Step"></p>
+<ol>
+<li>Go to your previously created GitHub repository.</li>
+<li>Click on Settings.</li>
+<li>Under Secrets and variables, click on Actions.</li>
+</ol>
+<p><img src="/images/blog/20240529/02.png#center" alt="Second Step"></p>
+<p>Add a repository secret named <code>AZURE_STATIC_WEB_APPS_API_TOKEN</code> and use the copied deployment token as the value.</p>
+<p><img src="/images/blog/20240529/03.png#center" alt="Third Step"></p>
+<p>For automation, add a GitHub Action that will run when there is a new change in the repository and publish the latest update to our website.</p>
+<ol>
+<li>Click on Actions.</li>
+<li>Create a new workflow.</li>
+<li>Paste the YAML code below.</li>
+</ol>
+<p><img src="/images/blog/20240529/04.png#center" alt="Fourth Step"></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Azure Static Web Apps CI/CD</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">main</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">types</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">opened, synchronize, reopened, closed]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">main</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">jobs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">build_and_deploy_job</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">github.event_name == &#39;push&#39; || (github.event_name == &#39;pull_request&#39; &amp;&amp; github.event.action != &#39;closed&#39;)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Build and Deploy Job</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">submodules</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">fetch-depth</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">lfs</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Build And Deploy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">builddeploy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">Azure/static-web-apps-deploy@v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">azure_static_web_apps_api_token</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">repo_token</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.GITHUB_TOKEN }}</span><span class="w"> </span><span class="c"># Used for Github integrations (i.e. PR comments)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;upload&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="c">###### Repository/Build Configurations - These values can be configured to match your app requirements. ######</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="c"># For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">app_location</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/&#34;</span><span class="w"> </span><span class="c"># App source code path</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">api_location</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w"> </span><span class="c"># Api source code path - optional</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">output_location</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;public&#34;</span><span class="w"> </span><span class="c"># Built app content directory - optional</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="c">###### End of Repository/Build Configurations ######</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">close_pull_request_job</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">github.event_name == &#39;pull_request&#39; &amp;&amp; github.event.action == &#39;closed&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Close Pull Request Job</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Close Pull Request</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">closepullrequest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">Azure/static-web-apps-deploy@v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">azure_static_web_apps_api_token</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;close&#34;</span><span class="w">
+</span></span></span></code></pre></div><p>After the workflow runs, I received the following error:</p>
+<p><img src="/images/blog/20240529/05.png#center" alt="Fifth Step"></p>
+<p>I couldn&rsquo;t find a solution for this issue. I suspect it might be because, in the Azure portal, we can specify that we&rsquo;re using Hugo, which isn&rsquo;t possible in the Bicep deployment for a Static Web App.</p>
+<h3 id="using-the-azure-portal">Using the Azure Portal</h3>
+<p><strong>It is now safe to follow these steps.</strong></p>
+<p>Now, we&rsquo;ll create the static website in the Azure portal.</p>
+<ol>
+<li>Go to the Azure Portal.</li>
+<li>Search for &ldquo;Static Web Apps&rdquo;.</li>
+<li>Click on &ldquo;Create&rdquo;.</li>
+</ol>
+<p><img src="/images/blog/20240529/06.png#center" alt="Sixth Step"></p>
+<ol>
+<li>Select the subscription and the resource group.</li>
+<li>Enter the name.</li>
+<li>Select &ldquo;Free&rdquo; as the plan type.</li>
+<li>Choose GitHub as the source and select your GitHub account (the deployment token will be added to the repository in the background).</li>
+<li>Select the organization, repository, and branch.</li>
+</ol>
+<p><img src="/images/blog/20240529/07.png#center" alt="Seventh Step"></p>
+<p>Under &ldquo;Build Presets,&rdquo; select Hugo. This step is missing in the Bicep deployment for a Static Web App. Click &ldquo;Review and Create&rdquo; and then &ldquo;Create&rdquo;.</p>
+<p><img src="/images/blog/20240529/08.png#center" alt="Eighth Step"></p>
+<p>Wait until the GitHub Action runs are finished. You can check the status of the actions in the GitHub repository under Actions.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Creating your own blog using Hugo and Azure Static Web Apps is both straightforward and rewarding.
+By leveraging Hugo&rsquo;s  static site generation and Azure&rsquo;s hosting solutions, you can build and deploy a professional blog with ease.
+This method gives you greater control over your site&rsquo;s appearance and functionality, ensuring fast performance and flexibility.</p>
+<p>In this guide, we covered the steps to install Hugo, create a new site, select and customize a theme, and deploy your site to GitHub and Azure Static Web Apps.
+We&rsquo;ve also discussed the benefits of using Markdown for better coding syntax support and the simplicity of automating deployments with GitHub Actions.</p>
+<p>Although we faced some challenges with the Bicep deployment, using the Azure portal proved to be an effective alternative.
+Following these steps, you can now focus on creating high-quality content for your blog, knowing that your site is built on a solid foundation.</p>
+<p>I hope this guide has been helpful and inspires you to start your own blog. If you have any questions or run into any issues, feel free to reach out. Happy blogging!</p>
+</article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='http://localhost:1313/js/toc.js'></script>
+<link rel="stylesheet" href='http://localhost:1313/css/toc.css' />
+
+
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="http://localhost:1313/">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+</body>
+
+<script type="application/javascript" src="http://localhost:1313/js/github-style.js"></script>
+
+
+
+
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Pratheep&#39;s Tech Blog</title>
+    <link>http://localhost:1313/post/</link>
+    <description>Recent content in Posts on Pratheep&#39;s Tech Blog</description>
+    <generator>Hugo</generator>
+    <language>de-ch</language>
+    <lastBuildDate>Thu, 06 Jun 2024 16:14:21 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Certificate-Based Onboarding for Azure Arc Servers</title>
+      <link>http://localhost:1313/post/20240529_azurearconboarding/</link>
+      <pubDate>Thu, 06 Jun 2024 16:14:21 +0200</pubDate>
+      <guid>http://localhost:1313/post/20240529_azurearconboarding/</guid>
+      <description>Overview The latest Agent Version of Azure Arc (Version 1.41) introduces a new feature: certificate-based authentication for service principals connecting or disconnecting the agent. In this blog post, I will guide you through preparing a certificate for certificate-based authentication in Azure Arc-enabled servers.&#xA;Why Use Certificates Instead of Secrets? Previously, secrets were used for onboarding Azure Arc-enabled servers. However, certificates offer several advantages:&#xA;Simplified Management: No need to remember or manage complex passwords.</description>
+    </item>
+    <item>
+      <title>How to Create Your Own Blog Using Hugo and Azure Static Web Apps</title>
+      <link>http://localhost:1313/post/20240529_createblog/</link>
+      <pubDate>Thu, 30 May 2024 01:50:32 +0200</pubDate>
+      <guid>http://localhost:1313/post/20240529_createblog/</guid>
+      <description>Overview Since May 2024, I have been a Microsoft MVP in Azure Hybrid and Migration. Many people have asked me, &amp;ldquo;Hey Pratheep, how did you start your blog?&amp;rdquo; To avoid spending too much time on questions like &amp;ldquo;How should my page look?&amp;rdquo; and &amp;ldquo;Which font should I use?&amp;rdquo; I initially published my first blogs on Medium.com. However, I always wanted to create my own blog site.&#xA;Recently, I noticed that some Microsoft-provided websites were using Hugo, a tool I hadn&amp;rsquo;t heard of before.</description>
+    </item>
+  </channel>
+</rss>
