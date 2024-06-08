@@ -1,7 +1,7 @@
 +++
 title = 'Certificate-Based Onboarding for Azure Arc Servers'
 date = 2024-06-06T16:14:21+02:00
-draft = true
+draft = false
 +++
 
 
