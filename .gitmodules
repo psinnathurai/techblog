@@ -1,3 +1,12 @@
+[submodule "themes/ananke"]
+	path = themes/ananke
+	url = https://github.com/budparr/gohugo-theme-ananke.git
+[submodule "themes/github-style"]
+	path = themes/github-style
+	url = https://github.com/psinnathurai/github-style
+[submodule "themes/github-style-plus"]
+	path = themes/github-style-plus
+	url = https://github.com/kurt-liao/github-style-plus
 [submodule "themes/PaperMod"]
 	path = themes/PaperMod
 	url = https://github.com/adityatelange/hugo-PaperMod.git

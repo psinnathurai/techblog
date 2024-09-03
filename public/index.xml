@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Pratheep&#39;s Tech Blog</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on Pratheep&#39;s Tech Blog</description>
-    <generator>Hugo</generator>
-    <language>de-ch</language>
-    <lastBuildDate>Thu, 06 Jun 2024 16:14:21 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <title>Sinnathurai Tech Blog</title>
+    <link>http://localhost:1313/hugo-PaperMod/</link>
+    <description>Recent content on Sinnathurai Tech Blog</description>
+    <image>
+      <title>Sinnathurai Tech Blog</title>
+      <url>http://localhost:1313/hugo-PaperMod/images/papermod-cover.png</url>
+      <link>http://localhost:1313/hugo-PaperMod/images/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- 0.126.1</generator>
+    <language>en</language>
+    <copyright>PaperMod Contributors</copyright>
+    <lastBuildDate>Tue, 03 Sep 2024 10:10:21 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/hugo-PaperMod/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure Arc - Private Endpoint</title>
+      <link>http://localhost:1313/hugo-PaperMod/posts/20240903/20240903_azurearc_privateendpoint/</link>
+      <pubDate>Tue, 03 Sep 2024 10:10:21 +0200</pubDate>
+      <guid>http://localhost:1313/hugo-PaperMod/posts/20240903/20240903_azurearc_privateendpoint/</guid>
+      <description>Overview In this Blog Post I want to show how I enabled Private Endpoint for my Azure Arc Enabled Servers Step by Step. This Blog Post will cover up the Topic Virtual Network Gateway, DNS Private Resolver and changing existing Server from Public Endpoint to Private Endpoints.</description>
+    </item>
     <item>
       <title>Certificate-Based Onboarding for Azure Arc Servers</title>
-      <link>http://localhost:1313/post/20240529_azurearconboarding/</link>
+      <link>http://localhost:1313/hugo-PaperMod/posts/20240606/20240529_azurearconboarding/</link>
       <pubDate>Thu, 06 Jun 2024 16:14:21 +0200</pubDate>
-      <guid>http://localhost:1313/post/20240529_azurearconboarding/</guid>
-      <description>Overview Azure Arc version 1.41 introduces certificate-based authentication for connecting and disconnecting servers, replacing the old method of using passwords. This new feature makes managing servers easier and more secure.&#xA;In this article, I will explain how to set up and use certificates for Azure Arc-enabled servers. You will learn how to create a certificate using Active Directory Certificate Services, export the certificate, and use it for onboarding servers to Azure Arc.</description>
+      <guid>http://localhost:1313/hugo-PaperMod/posts/20240606/20240529_azurearconboarding/</guid>
+      <description>Overview Azure Arc version 1.41 introduces certificate-based authentication for connecting and disconnecting servers, replacing the old method of using passwords. This new feature makes managing servers easier and more secure.
+In this article, I will explain how to set up and use certificates for Azure Arc-enabled servers. You will learn how to create a certificate using Active Directory Certificate Services, export the certificate, and use it for onboarding servers to Azure Arc.</description>
     </item>
     <item>
       <title>How to Create Your Own Blog Using Hugo and Azure Static Web Apps</title>
-      <link>http://localhost:1313/post/20240529_createblog/</link>
+      <link>http://localhost:1313/hugo-PaperMod/posts/20240529/20240529_createblog/</link>
       <pubDate>Thu, 30 May 2024 01:50:32 +0200</pubDate>
-      <guid>http://localhost:1313/post/20240529_createblog/</guid>
-      <description>Overview Since May 2024, I have been a Microsoft MVP in Azure Hybrid and Migration. Many people have asked me, &amp;ldquo;Hey Pratheep, how did you start your blog?&amp;rdquo; To avoid spending too much time on questions like &amp;ldquo;How should my page look?&amp;rdquo; and &amp;ldquo;Which font should I use?&amp;rdquo; I initially published my first blogs on Medium.com. However, I always wanted to create my own blog site.&#xA;Recently, I noticed that some Microsoft-provided websites were using Hugo, a tool I hadn&amp;rsquo;t heard of before.</description>
-    </item>
-    <item>
-      <title>Read Me</title>
-      <link>http://localhost:1313/readme/</link>
-      <pubDate>Mon, 27 May 2024 16:18:52 +0200</pubDate>
-      <guid>http://localhost:1313/readme/</guid>
-      <description>As a Senior Azure Engineer, I specialize in Microsoft Azure Governance, Azure Arc, and Azure Virtual Desktop.&#xA;Through my roles as an instructor at a higher technical school and as a subject matter expert in assessing individual practical work of aspiring computer scientists, I aspire to contribute to the next generation of IT professionals.&#xA;On my Medium blog https://medium.com/@pratheep.sinnathurai, I share daily insights and continue to learn alongside the broader IT community.</description>
+      <guid>http://localhost:1313/hugo-PaperMod/posts/20240529/20240529_createblog/</guid>
+      <description>Overview Since May 2024, I have been a Microsoft MVP in Azure Hybrid and Migration. Many people have asked me, &amp;ldquo;Hey Pratheep, how did you start your blog?&amp;rdquo; To avoid spending too much time on questions like &amp;ldquo;How should my page look?&amp;rdquo; and &amp;ldquo;Which font should I use?&amp;rdquo; I initially published my first blogs on Medium.com. However, I always wanted to create my own blog site.
+Recently, I noticed that some Microsoft-provided websites were using Hugo, a tool I hadn&amp;rsquo;t heard of before.</description>
     </item>
   </channel>
 </rss>
