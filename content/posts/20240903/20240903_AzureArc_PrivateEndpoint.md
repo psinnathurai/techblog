@@ -1,7 +1,7 @@
 ---
 title: "Azure Arc - Private Endpoint"
 date: 2024-09-03T10:10:21+02:00
-draft: false
+draft: true
 ShowToc: true
 author: 'Pratheep Sinnathurai'
 comments: true
